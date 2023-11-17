@@ -1,0 +1,116 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="audio\dmg.wav" />
+    <None Remove="audio\dying.wav" />
+    <None Remove="audio\shot.wav" />
+    <None Remove="audio\sun.wav" />
+    <None Remove="img\interfejs.jpg.png" />
+    <None Remove="img\LOPATOWAC.png" />
+    <None Remove="img\marchewa.png" />
+    <None Remove="img\marchewaBullet.png" />
+    <None Remove="img\menu.png" />
+    <None Remove="img\mrozonaKawa.png" />
+    <None Remove="img\nieumarlak.png" />
+    <None Remove="img\nieumarlakHelm1.png" />
+    <None Remove="img\paczkaMarchewa.png" />
+    <None Remove="img\paczkaMrozonaKawa.png" />
+    <None Remove="img\paczkaPowtarzajacasupermarchewa.png" />
+    <None Remove="img\paczkaRedsuninthesky.png" />
+    <None Remove="img\paczkaZiemniak.png" />
+    <None Remove="img\pole.png" />
+    <None Remove="img\powtarzajacasupermarchewa.png" />
+    <None Remove="img\redsuninthesky.png" />
+    <None Remove="img\slonce.png" />
+    <None Remove="img\st.png" />
+    <None Remove="img\tw.png" />
+    <None Remove="img\wy.png" />
+    <None Remove="img\ziemniak.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="audio\dmg.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="audio\dying.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="audio\shot.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="audio\sun.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\interfejs.jpg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\LOPATOWAC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\marchewa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\marchewaBullet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\menu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\mrozonaKawa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\nieumarlak.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\nieumarlakHelm1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\paczkaMarchewa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\paczkaMrozonaKawa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\paczkaPowtarzajacasupermarchewa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\paczkaRedsuninthesky.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\paczkaZiemniak.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\pole.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\powtarzajacasupermarchewa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\redsuninthesky.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\slonce.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\st.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\tw.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\wy.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\ziemniak.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
