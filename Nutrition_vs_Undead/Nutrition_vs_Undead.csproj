@@ -12,12 +12,14 @@
     <None Remove="audio\dying.wav" />
     <None Remove="audio\shot.wav" />
     <None Remove="audio\sun.wav" />
+    <None Remove="img\gIMP.png" />
     <None Remove="img\interfejs.jpg.png" />
     <None Remove="img\LOPATOWAC.png" />
     <None Remove="img\marchewa.png" />
     <None Remove="img\marchewaBullet.png" />
     <None Remove="img\menu.png" />
     <None Remove="img\mrozonaKawa.png" />
+    <None Remove="img\mrozonaKawaBullet.png" />
     <None Remove="img\nieumarlak.png" />
     <None Remove="img\nieumarlakHelm1.png" />
     <None Remove="img\paczkaMarchewa.png" />
@@ -48,6 +50,9 @@
     <Resource Include="audio\sun.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="img\gIMP.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="img\interfejs.jpg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -64,6 +69,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\mrozonaKawa.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\mrozonaKawaBullet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\nieumarlak.png">

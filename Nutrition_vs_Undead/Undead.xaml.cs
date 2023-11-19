@@ -27,29 +27,11 @@ namespace Nutrition_vs_Undead
 	/// </summary>
 	public partial class Undead : UserControl
 	{
-		public Undead()
-		{
-            InitializeComponent();
-
-            TimerZombie.Interval = TimeSpan.FromSeconds(3);
-            TimerZombie.Tick += timer_Tick;
-            TimerZombie.Start();
-
-            TimerSprawdzanie.Interval = TimeSpan.FromSeconds((double)1 / 30);
-            TimerSprawdzanie.Tick += timer_Tick2;
-            TimerSprawdzanie.Start();
-
-            TimerSpowolnienie.Interval = TimeSpan.FromSeconds(10);
-            TimerSpowolnienie.Tick += TimerSpowolnienie_Tick;
-        }
-
-
-
-		public DispatcherTimer TimerZombie = new();
-		public DispatcherTimer TimerSprawdzanie = new();
-		public DispatcherTimer TimerSpowolnienie = new();
-		private bool Zyje = true;
-		private int Zycie = 20;
+		public DispatcherTimer TimerZombie = new();			// Timer do ruszania się umarlaków
+		public DispatcherTimer TimerSprawdzanie = new();	// Timer do odświerzania 30 razy na sekunde
+		public DispatcherTimer TimerSpowolnienie = new();	// Timer do spowolnienia od mrożona
+		private bool Zyje = true;							// Flaga mówiąca czy umarlak żyje
+		private int Zycie = 20;								// Wartość życia nieumarlaka
 
 		public Undead(int Rzadek, int Kolumna, int id)
 		{
@@ -58,38 +40,38 @@ namespace Nutrition_vs_Undead
 			Grid.SetRow(this, Rzadek);
 			Grid.SetColumn(this, Kolumna);
 
-			switch (id)
+			switch (id)	// Dobieranie odpowiuednich wartości zależnie od id nieumarlaka:
 			{
 				case 0:
 					TimerZombie.Interval = TimeSpan.FromSeconds(3);
 					Umarlak.Visibility = Visibility.Visible;
 					UmarlakZKaskiem.Visibility = Visibility.Collapsed;
 					Imp.Visibility = Visibility.Collapsed;
-                    break;
+					break;
 				case 1:
-                    TimerZombie.Interval = TimeSpan.FromSeconds(1.5);
-                    Umarlak.Visibility = Visibility.Collapsed;
-                    UmarlakZKaskiem.Visibility = Visibility.Visible;
-                    Imp.Visibility = Visibility.Collapsed;
-                    Zycie = 8;
-                    break; 
+					TimerZombie.Interval = TimeSpan.FromSeconds(1.5);
+					Umarlak.Visibility = Visibility.Collapsed;
+					UmarlakZKaskiem.Visibility = Visibility.Collapsed;
+					Imp.Visibility = Visibility.Visible;
+					Zycie = 8;
+					break;
 				case 2:
-                    TimerZombie.Interval = TimeSpan.FromSeconds(3);
-                    Umarlak.Visibility = Visibility.Collapsed;
-                    UmarlakZKaskiem.Visibility = Visibility.Collapsed;
-                    Imp.Visibility = Visibility.Visible;
-                    Zycie = 40;
-                    break;
-                default:
-                    TimerZombie.Interval = TimeSpan.FromSeconds(3);
-                    Umarlak.Visibility = Visibility.Visible;
-                    UmarlakZKaskiem.Visibility = Visibility.Collapsed;
-                    Imp.Visibility = Visibility.Collapsed;
-                    break;
-            }
+					TimerZombie.Interval = TimeSpan.FromSeconds(3);
+					Umarlak.Visibility = Visibility.Collapsed;
+					UmarlakZKaskiem.Visibility = Visibility.Visible;
+					Imp.Visibility = Visibility.Collapsed;
+					Zycie = 40;
+					break; 
+				default:
+					TimerZombie.Interval = TimeSpan.FromSeconds(3);
+					Umarlak.Visibility = Visibility.Visible;
+					UmarlakZKaskiem.Visibility = Visibility.Collapsed;
+					Imp.Visibility = Visibility.Collapsed;
+					break;
+			}
 
-            TimerZombie.Tick += timer_Tick;
-            TimerZombie.Start();
+			TimerZombie.Tick += timer_Tick;
+			TimerZombie.Start();
 
 			TimerSprawdzanie.Interval = TimeSpan.FromSeconds((double)1 / 30);
 			TimerSprawdzanie.Tick += timer_Tick2;
@@ -99,13 +81,13 @@ namespace Nutrition_vs_Undead
 			TimerSpowolnienie.Tick += TimerSpowolnienie_Tick;
 		}
 
-		private void TimerSpowolnienie_Tick(object? sender, EventArgs e)
+		private void TimerSpowolnienie_Tick(object? sender, EventArgs e) // Efekt spowolnienia od Mrożona
 		{
-            TimerZombie.Interval = TimeSpan.FromSeconds(3);
+			TimerZombie.Interval = TimeSpan.FromSeconds(3);
 			TimerSpowolnienie.Stop();
 		}
 
-		private void timer_Tick(object? sender, EventArgs e)
+		private void timer_Tick(object? sender, EventArgs e)	// Sprawdzanie czy nieumarlak jest w roślince
 		{
 			bool WRozlince = false;
 			if (Grid.GetColumn(this) > 0)
@@ -128,18 +110,10 @@ namespace Nutrition_vs_Undead
 				{
 					System.Windows.Application.Current.Shutdown();
 				}
-				//Kys();
-
 			}
 		}
-		private void timer_Tick2(object? sender, EventArgs e)
+		private void timer_Tick2(object? sender, EventArgs e)	// Sprawdzanie czy nieumarlak koliduje z pociskiem
 		{
-			//if (MainWindow.PozycjePociskow.Contains(Grid.GetColumn(this)) && MainWindow.PozycjePociskow[MainWindow.PozycjePociskow.IndexOf(Grid.GetColumn(this)) + 1] == Grid.GetRow(this))
-			//{
-			//    Kys();
-			//}
-			//Console.WriteLine(MainWindow.PozycjePociskow);
-
 			if (Zyje)
 			{
 				foreach (var i in ((Grid)Parent).Children.OfType<Pocisk>())
@@ -147,11 +121,10 @@ namespace Nutrition_vs_Undead
 					if (Grid.GetColumn(i) == Grid.GetColumn(this) && Grid.GetRow(i) == Grid.GetRow(this) || Grid.GetColumn(i) == Grid.GetColumn(this) + 1 && Grid.GetRow(i) == Grid.GetRow(this))
 					{
 						int Obrazenia = 2;
-						if ((string)i.Tag == "Mrozon")
+						if ((string)i.Tag == "Mrozon")	// Jeśli pocisk jest od Mrożona
 						{
 							Obrazenia = 1;
-                            TimerZombie.Interval = TimeSpan.FromSeconds(3);
-                            //TimerSpowolnienie.Start();
+							TimerZombie.Interval = TimeSpan.FromSeconds(3);
 						}
 
 						Oberwij(Obrazenia);
@@ -161,11 +134,11 @@ namespace Nutrition_vs_Undead
 					}
 				}
 			}
-			if (Zycie <= 0)
+			if (Zycie <= 0)	// Jeśli nieumarlak ma umrzeć
 			{
 				TimerSprawdzanie.Stop();
 				TimerZombie.Stop();
-				Kys();
+				ZabijSie();
 			}
 		}
 
@@ -178,7 +151,7 @@ namespace Nutrition_vs_Undead
 
 		}
 
-		public void Kys()
+		public void ZabijSie()
 		{
 			if (Zyje)
 			{

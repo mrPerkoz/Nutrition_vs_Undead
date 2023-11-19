@@ -9,7 +9,7 @@
     <Grid HorizontalAlignment="Right">
         <Image x:Name="Umarlak" Source="/img/nieumarlak.png"/>
         <Image x:Name="UmarlakZKaskiem" Source="/img/nieumarlakHelm1.png"/>
-        <Image x:Name="Imp" Source="/img/nieumarlak.png"/>
+        <Image x:Name="Imp" Source="/img/gIMP.png"/>
 
     </Grid>
 </UserControl>

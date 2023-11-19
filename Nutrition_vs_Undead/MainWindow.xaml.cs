@@ -23,24 +23,26 @@ namespace Nutrition_vs_Undead
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public static int WybranaRoslina = -1;
-		public static int Sloneczka = 100;
-		public static int[] CenyRoslin = { 0, 100, 50, 50, 300, 225 };
-		public static int Punkty = 0;
+		public static int WybranaRoslina = -1;										// Id wybranej rośliny (-1 - brak wybranej rośliny, 0 - łopata)
+		public static int Sloneczka = 100;											// Ilość słoneczek
+		public readonly static int[] CenyRoslin = { 0, 100, 50, 50, 300, 225 };     // Tablica do wglądu cen roślin
+		public static int Punkty = 0;												// Ilość punktów
 
-		public static DispatcherTimer TimerOdswierzanie = new();
-		public static DispatcherTimer TimerSloneczka = new();
-		public static DispatcherTimer TimerSpawnowania = new();
-		public static DispatcherTimer TimerUtrudniania = new();
-		public static DispatcherTimer TimerPrzedSpawnowaniem = new();
+		public static DispatcherTimer TimerOdswierzanie = new();                    // Timer do odświerzania 30 razy na sekundę
+		public static DispatcherTimer TimerSloneczka = new();                       // Timer do dodawania słoneczek
+		public static DispatcherTimer TimerSpawnowania = new();                     // Timer do pojawiania nieumarlaków
+		public static DispatcherTimer TimerUtrudniania = new();                     // Timer do stopniowego zmieniania poziomu trudności
+		public static DispatcherTimer TimerPrzedSpawnowaniem = new();               // Timer do odczekania przed zaczęciem pojawiania nieumarlaków
 
-		private int PoziomTrudnosci = 0;
+		private int PoziomTrudnosci = 0;                                            // Wartość poziomu trudności
 
 		public MainWindow()
 		{
 			InitializeComponent();
 
 			IloscSloneczek.Text = Convert.ToString(Sloneczka);
+
+			// Ustalanie interwału i rozpoczęcie timerów:
 
 			TimerOdswierzanie.Interval = TimeSpan.FromSeconds((double)1 / 30);
 			TimerOdswierzanie.Tick += TimerOdswierzanie_Tick;
@@ -67,6 +69,9 @@ namespace Nutrition_vs_Undead
 
 			TimerPrzedSpawnowaniem.Start();
 
+			// Stworzenie przycisków służących do stawiania roślinek
+			// na całym gridzie:
+
 			for (int i = 0;  i < 9; i++) 
 			{
 				for (int j = 0; j < 5; j++)
@@ -80,19 +85,6 @@ namespace Nutrition_vs_Undead
 					Plansza.Children.Add(Guzik);
 				}
 			}
-
-
-
-
-			//Plansza.Children.Add(new PrzyciskKratki());
-
-			//Pocisk pocisk = new(0);
-
-			//Grid.SetRow(pocisk,1);
-
-			//Plansza.Children.Add(new Nutrition(1, 1, 0));
-			//Plansza.Children.Add(new Undead(1, 8));
-			//Plansza.Children.Add(pocisk);
 		}
 
 		private void TimerPrzedSpawnowaniem_Tick(object? sender, EventArgs e)
@@ -103,40 +95,42 @@ namespace Nutrition_vs_Undead
 			TimerSpawnowania.Start();
 		}
 
-		private void TimerUtrudniania_Tick(object? sender, EventArgs e)
+		private void TimerUtrudniania_Tick(object? sender, EventArgs e)	// Rośnięcie częstotliwości pojawiania nieumarlaków
 		{
 			PoziomTrudnosci += 5;
 			TimerSpawnowania.Interval = TimeSpan.FromSeconds(((1 / ((double)PoziomTrudnosci + 10)) * 50) * 2);
 		}
 
-        private void TimerSpawnowania_Tick(object? sender, EventArgs e)
-        {
-            Random random = new();
+		private void TimerSpawnowania_Tick(object? sender, EventArgs e)
+		{
+			Random random = new();
 
-            if (PoziomTrudnosci > 30)
-            {
-                Plansza.Children.Add(new Undead(random.Next(5), 8, random.Next(2)));
-            }
-            if (PoziomTrudnosci > 20)
-            {
-                Plansza.Children.Add(new Undead(random.Next(5), 8, random.Next(1)));
-            }
-            else
-            {
-                Plansza.Children.Add(new Undead(random.Next(5), 8, 0));
-            }
-        }
+			if (PoziomTrudnosci > 30)   // Szansa na pojawienie nieumarlaka z kaskiem, gdy poziom trudności jest większy od 30
+			{
+				Plansza.Children.Add(new Undead(random.Next(5), 8, random.Next(3)));
+			}
+			if (PoziomTrudnosci > 20)   // Szansa na pojawienie impa, gdy poziom trudności jest większy od 20
+			{
+				Plansza.Children.Add(new Undead(random.Next(5), 8, random.Next(2)));
+			}
+			else
+			{
+				Plansza.Children.Add(new Undead(random.Next(5), 8, 0));
+		}
+	}
 
-        private void TimerSloneczka_Tick(object? sender, EventArgs e)
+		private void TimerSloneczka_Tick(object? sender, EventArgs e)
 		{
 			Sloneczka += 25;
 		}
 
-		private void TimerOdswierzanie_Tick(object? sender, EventArgs e)
+		private void TimerOdswierzanie_Tick(object? sender, EventArgs e)	// Aktualizowanie ilości słoneczek i punktów co 1/30 sekundy
 		{
 			IloscSloneczek.Text = Convert.ToString(Sloneczka);
 			IloscPunktow.Text = "Punkty: " + Convert.ToString(Punkty);
 		}
+
+		// Przyciski do wybierania roślin:
 
 		private void Lopata_Click(object sender, RoutedEventArgs e)
 		{

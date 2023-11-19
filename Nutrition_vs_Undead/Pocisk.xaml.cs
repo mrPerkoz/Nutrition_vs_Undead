@@ -21,9 +21,7 @@ namespace Nutrition_vs_Undead
 	/// </summary>
 	public partial class Pocisk : UserControl
 	{
-		private bool Istnieje = true;
-
-		public DispatcherTimer TimerRuchu = new();
+		public DispatcherTimer TimerRuchu = new();  // Timer do przemieszczania się
 
 		public Pocisk()
 		{
@@ -34,37 +32,22 @@ namespace Nutrition_vs_Undead
 
 			TimerRuchu.Start();
 		}
-		public Pocisk(int id)
-		{
-			InitializeComponent();
 
-			TimerRuchu.Interval = TimeSpan.FromSeconds(0.25);
-			TimerRuchu.Tick += TimerRuchu_Tick;
-
-			TimerRuchu.Start();
-
-			//MainWindow.PozycjePociskow[IndeksKolumny] = Grid.GetColumn(this);
-			//MainWindow.PozycjePociskow[IndeksWiersza] = Grid.GetRow(this);
-		}
-
-		private void TimerRuchu_Tick(object? sender, EventArgs e)
+		private void TimerRuchu_Tick(object? sender, EventArgs e)	// Sprawdzanie czy pocisk wyszedł poza planszę
 		{
 			if (Grid.GetColumn(this) < 8)
 			{
 				Grid.SetColumn(this, Grid.GetColumn(this) + 1);
-				//MainWindow.PozycjePociskow.Add(Grid.GetColumn(this));
-				//MainWindow.PozycjePociskow.Add(Grid.GetRow(this));
 			} else {
-				Kys();
+				ZabijSie();
 				TimerRuchu.Stop();
 			}
 		}
-		private void Kys()
+		private void ZabijSie()
 		{
 			if (Parent != null)
 			{
 				((Grid)Parent).Children.Remove(this);
-				Istnieje = false;
 			}
 		}
 	}
