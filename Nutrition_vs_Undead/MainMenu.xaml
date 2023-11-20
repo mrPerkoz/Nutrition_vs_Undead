@@ -36,30 +36,33 @@
 			<ColumnDefinition></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
-			<ColumnDefinition></ColumnDefinition>
-			<ColumnDefinition></ColumnDefinition>
-			<ColumnDefinition></ColumnDefinition>
-			<ColumnDefinition></ColumnDefinition>
-			<ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
+            <ColumnDefinition Width="0.25*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
 			<ColumnDefinition></ColumnDefinition>
 		</Grid.ColumnDefinitions>
-		<Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2.25*"></RowDefinition>
 			<RowDefinition></RowDefinition>
 			<RowDefinition></RowDefinition>
-			<RowDefinition></RowDefinition>
-			<RowDefinition></RowDefinition>
-			<RowDefinition></RowDefinition>
-			<RowDefinition></RowDefinition>
-		</Grid.RowDefinitions>
-		<Button Click="PrzyciskStart_Click" Grid.Column="6" Grid.Row="2" VerticalAlignment="Center" Background="Transparent" Height="100" Grid.ColumnSpan="3" BorderBrush="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}">
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="1.25*"></RowDefinition>
+        </Grid.RowDefinitions>
+		<Button Click="PrzyciskStart_Click" Grid.Column="7" Grid.Row="1" VerticalAlignment="Center" Background="Transparent" Height="75" Grid.ColumnSpan="7" BorderBrush="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}">
 			<Image Source="/img/st.png" />
 		</Button>
-		<Button Click="Button_Click" Grid.Column="6" Grid.Row="3" VerticalAlignment="Center" Background="Transparent" Height="100" Grid.ColumnSpan="3" BorderBrush="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}">
+		<Button Click="Button_Click" Grid.Column="6" Grid.Row="2" VerticalAlignment="Center" Background="Transparent" Height="75" Grid.ColumnSpan="7" BorderBrush="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}">
 			<Image Source="/img/tw.png" />
 		</Button>
-		<Button Click="Button_Click_1" Grid.Column="6" Grid.Row="4" VerticalAlignment="Center" Background="Transparent" Height="100" Grid.ColumnSpan="3" BorderBrush="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}">
+		<Button Click="Button_Click_1" Grid.Column="5" Grid.Row="3" VerticalAlignment="Center" Background="Transparent" Height="75" Grid.ColumnSpan="7" BorderBrush="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}">
 			<Image Source="/img/wy.png" />
 		</Button>
 

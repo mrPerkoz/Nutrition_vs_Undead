@@ -56,7 +56,7 @@ namespace Nutrition_vs_Undead
 			idRosliny = id;
 
 			switch (id)	// Dobieranie odpowiuednich wartości zależnie od id rośliny:
-            {
+			{
 				case 1:
 					TimerPocisk.Start();
 					Marchewka.Visibility = Visibility.Visible;
@@ -147,17 +147,27 @@ namespace Nutrition_vs_Undead
 		}
 
 		private void TimerPocisk_Tick(object? sender, EventArgs e)	// Dodawanie pocisków
-		{
-            if (Parent != null)
-            {
+		{	
+			bool wLini = false;
+
+			foreach (var i in ((Grid)Parent).Children.OfType<Undead>())	// Sprawdzanie czy nieumarlak jest w tej samej lini co roślina
+			{
+				if (Grid.GetRow(this) == Grid.GetRow(i))
+				{
+					wLini = true;
+				}
+			}
+
+			if (Parent != null && wLini)
+			{
 				Pocisk pocisk = new();
 
-                if (idRosliny == 5)
+				if (idRosliny == 5)
 				{
 					pocisk.Tag = "Mrozon";
-                    pocisk.MarchewaBoulet.Visibility = Visibility.Collapsed;
-                    pocisk.MrozonBoulet.Visibility = Visibility.Visible;
-                }
+					pocisk.MarchewaBoulet.Visibility = Visibility.Collapsed;
+					pocisk.MrozonBoulet.Visibility = Visibility.Visible;
+				}
 				Grid.SetColumn(pocisk, Grid.GetColumn(this));
 				Grid.SetRow(pocisk, Grid.GetRow(this));
 				((Grid)Parent).Children.Add(pocisk);
@@ -172,10 +182,10 @@ namespace Nutrition_vs_Undead
 						TimerPocisk.Interval = TimeSpan.FromSeconds(0.3);
 					}
 				}
-			}
 			SoundPlayer soundPlayer = new("./../../../audio/shot.wav");
 			soundPlayer.Load();
 			soundPlayer.Play();
+			}
 		}
 
 		private void ZabijSie()

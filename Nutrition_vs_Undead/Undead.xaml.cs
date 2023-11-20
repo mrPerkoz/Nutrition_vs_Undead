@@ -29,7 +29,6 @@ namespace Nutrition_vs_Undead
 	{
 		public DispatcherTimer TimerZombie = new();			// Timer do ruszania się umarlaków
 		public DispatcherTimer TimerSprawdzanie = new();	// Timer do odświerzania 30 razy na sekunde
-		public DispatcherTimer TimerSpowolnienie = new();	// Timer do spowolnienia od mrożona
 		private bool Zyje = true;							// Flaga mówiąca czy umarlak żyje
 		private int Zycie = 20;								// Wartość życia nieumarlaka
 
@@ -77,14 +76,6 @@ namespace Nutrition_vs_Undead
 			TimerSprawdzanie.Tick += timer_Tick2;
 			TimerSprawdzanie.Start(); 
 			
-			TimerSpowolnienie.Interval = TimeSpan.FromSeconds(3);
-			TimerSpowolnienie.Tick += TimerSpowolnienie_Tick;
-		}
-
-		private void TimerSpowolnienie_Tick(object? sender, EventArgs e) // Efekt spowolnienia od Mrożona
-		{
-			TimerZombie.Interval = TimeSpan.FromSeconds(3);
-			TimerSpowolnienie.Stop();
 		}
 
 		private void timer_Tick(object? sender, EventArgs e)	// Sprawdzanie czy nieumarlak jest w roślince
@@ -118,7 +109,8 @@ namespace Nutrition_vs_Undead
 			{
 				foreach (var i in ((Grid)Parent).Children.OfType<Pocisk>())
 				{
-					if (Grid.GetColumn(i) == Grid.GetColumn(this) && Grid.GetRow(i) == Grid.GetRow(this) || Grid.GetColumn(i) == Grid.GetColumn(this) + 1 && Grid.GetRow(i) == Grid.GetRow(this))
+					if (Grid.GetColumn(i) == Grid.GetColumn(this) && Grid.GetRow(i) == Grid.GetRow(this) ||
+						Grid.GetColumn(i) == Grid.GetColumn(this) + 1 && Grid.GetRow(i) == Grid.GetRow(this))
 					{
 						int Obrazenia = 2;
 						if ((string)i.Tag == "Mrozon")	// Jeśli pocisk jest od Mrożona

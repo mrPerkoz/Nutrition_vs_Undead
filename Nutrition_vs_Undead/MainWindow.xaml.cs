@@ -109,15 +109,15 @@ namespace Nutrition_vs_Undead
 			{
 				Plansza.Children.Add(new Undead(random.Next(5), 8, random.Next(3)));
 			}
-			if (PoziomTrudnosci > 20)   // Szansa na pojawienie impa, gdy poziom trudności jest większy od 20
+			else if (PoziomTrudnosci > 20)   // Szansa na pojawienie impa, gdy poziom trudności jest większy od 20
 			{
 				Plansza.Children.Add(new Undead(random.Next(5), 8, random.Next(2)));
 			}
 			else
 			{
 				Plansza.Children.Add(new Undead(random.Next(5), 8, 0));
+			}
 		}
-	}
 
 		private void TimerSloneczka_Tick(object? sender, EventArgs e)
 		{
