@@ -139,10 +139,10 @@ namespace Nutrition_vs_Undead
         private void Oberwij(int Obrazenia)
 		{
 			Zycie -= Obrazenia;
-            mediaPlayer.Open(new Uri("./audio/dmg.wav", UriKind.Relative));
+
+            mediaPlayer.Open(new Uri(File.Exists("./audio/dmg.wav") ? "./audio/dmg.wav" : "./../../../audio/dmg.wav", UriKind.Relative));
             mediaPlayer.Play();
             mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
-
         }
 
         private void MediaPlayer_MediaEnded(object? sender, EventArgs e)
@@ -158,7 +158,8 @@ namespace Nutrition_vs_Undead
 		{
 			if (Zyje)
 			{
-                mediaPlayer2.Open(new Uri("./audio/dying.wav", UriKind.Relative));
+                mediaPlayer2.Open(new Uri(File.Exists("./audio/dying.wav") ? "./audio/dying.wav" : "./../../../audio/dying.wav", UriKind.Relative));
+
                 mediaPlayer2.Play();
 				mediaPlayer2.MediaEnded += MediaPlayer_MediaEnded2;
 

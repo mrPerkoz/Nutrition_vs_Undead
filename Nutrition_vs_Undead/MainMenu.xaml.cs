@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
@@ -20,7 +21,8 @@ namespace Nutrition_vs_Undead
 	/// </summary>
 	public partial class MainMenu : Window
 	{
-		public SoundPlayer soundPlayer = new("./audio/sun.wav");
+		public SoundPlayer soundPlayer = new(File.Exists("./audio/sun.wav") ? "./audio/sun.wav" : "./../../../audio/sun.wav");
+
 		public MainMenu()
 		{
 			InitializeComponent();

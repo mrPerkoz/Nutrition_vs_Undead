@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Media;
@@ -182,8 +183,9 @@ namespace Nutrition_vs_Undead
 						TimerPocisk.Interval = TimeSpan.FromSeconds(0.3);
 					}
 				}
-				mediaPlayer.Open(new Uri("./audio/shot.wav", UriKind.Relative));
-				mediaPlayer.Play();
+                mediaPlayer.Open(new Uri(File.Exists("./audio/shot.wav") ? "./audio/shot.wav" : "./../../../audio/shot.wav", UriKind.Relative));
+
+                mediaPlayer.Play();
                 mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
 
             }
