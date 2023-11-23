@@ -182,13 +182,20 @@ namespace Nutrition_vs_Undead
 						TimerPocisk.Interval = TimeSpan.FromSeconds(0.3);
 					}
 				}
-			SoundPlayer soundPlayer = new("./../../../audio/shot.wav");
-			soundPlayer.Load();
-			soundPlayer.Play();
-			}
-		}
+				mediaPlayer.Open(new Uri("./audio/shot.wav", UriKind.Relative));
+				mediaPlayer.Play();
+                mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
 
-		private void ZabijSie()
+            }
+        }
+
+        MediaPlayer mediaPlayer = new();
+        private void MediaPlayer_MediaEnded(object? sender, EventArgs e)
+        {
+            mediaPlayer.Close();
+        }
+
+        private void ZabijSie()
 		{
 			if (Zyje)
 			{

@@ -120,8 +120,7 @@ namespace Nutrition_vs_Undead
 						}
 
 						Oberwij(Obrazenia);
-						((Grid)i.Parent).Children.Remove(i);
-						i.TimerRuchu.Stop();
+						i.ZabijSie();
 						break;
 					}
 				}
@@ -134,30 +133,42 @@ namespace Nutrition_vs_Undead
 			}
 		}
 
-		private void Oberwij(int Obrazenia)
+        private MediaPlayer mediaPlayer = new();
+        private MediaPlayer mediaPlayer2 = new();
+
+        private void Oberwij(int Obrazenia)
 		{
 			Zycie -= Obrazenia;
-			SoundPlayer soundPlayer = new("./../../../audio/dmg.wav");
-			soundPlayer.Load();
-			soundPlayer.Play();
+            mediaPlayer.Open(new Uri("./audio/dmg.wav", UriKind.Relative));
+            mediaPlayer.Play();
+            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
 
-		}
+        }
 
-		public void ZabijSie()
+        private void MediaPlayer_MediaEnded(object? sender, EventArgs e)
+        {
+			mediaPlayer.Close();
+        }
+        private void MediaPlayer_MediaEnded2(object? sender, EventArgs e)
+        {
+			mediaPlayer2.Close();
+        }
+
+        public void ZabijSie()
 		{
 			if (Zyje)
 			{
-				SoundPlayer soundPlayer = new("./../../../audio/dying.wav");
-				soundPlayer.Load();
-				soundPlayer.Play();
+                mediaPlayer2.Open(new Uri("./audio/dying.wav", UriKind.Relative));
+                mediaPlayer2.Play();
+				mediaPlayer2.MediaEnded += MediaPlayer_MediaEnded2;
 
-				MainWindow.Punkty++;
+                MainWindow.Punkty++;
 
 				Zyje = false;
 				((Grid)Parent).Children.Remove(this);
 			}
 		}
-	}
+    }
 }
 
 

@@ -20,7 +20,7 @@ namespace Nutrition_vs_Undead
 	/// </summary>
 	public partial class MainMenu : Window
 	{
-		public SoundPlayer soundPlayer = new("./../../../audio/sun.wav");
+		public SoundPlayer soundPlayer = new("./audio/sun.wav");
 		public MainMenu()
 		{
 			InitializeComponent();
@@ -33,7 +33,6 @@ namespace Nutrition_vs_Undead
 		private void PrzyciskStart_Click(object sender, RoutedEventArgs e)
 		{
 			new MainWindow().Show();
-			soundPlayer.Stop();
 			Close();
 		}
 

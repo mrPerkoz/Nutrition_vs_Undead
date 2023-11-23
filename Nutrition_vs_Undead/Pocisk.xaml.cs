@@ -40,15 +40,15 @@ namespace Nutrition_vs_Undead
 				Grid.SetColumn(this, Grid.GetColumn(this) + 1);
 			} else {
 				ZabijSie();
-				TimerRuchu.Stop();
 			}
 		}
-		private void ZabijSie()
+		public void ZabijSie()
 		{
 			if (Parent != null)
 			{
 				((Grid)Parent).Children.Remove(this);
-			}
+                TimerRuchu.Stop();
+            }
 		}
 	}
 }
