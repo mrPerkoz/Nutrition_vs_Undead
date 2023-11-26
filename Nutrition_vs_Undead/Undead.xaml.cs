@@ -96,8 +96,24 @@ namespace Nutrition_vs_Undead
 			}
 			if (Grid.GetColumn(this) == 0 && !WRozlince)
 			{
+				foreach (var i in ((Grid)Parent).Children.OfType<Undead>())
+				{
+					i.TimerSprawdzanie.Stop();
+					i.TimerZombie.Stop();
+				}
+                foreach (var i in ((Grid)Parent).Children.OfType<Pocisk>())
+                {
+                    i.TimerRuchu.Stop();
+                }
+                foreach (var i in ((Grid)Parent).Children.OfType<Nutrition>())
+                {
+					i.TimerObrywanie.Stop();
+					i.TimerOdswierzanie.Stop();
+					i.TimerPocisk.Stop();
+					i.TimerSloneczko.Stop();
+                }
 
-				if (MessageBox.Show("Przegrałeś/aś!!!") == MessageBoxResult.OK)
+                if (MessageBox.Show("Przegrałeś/aś!!!") == MessageBoxResult.OK)
 				{
 					System.Windows.Application.Current.Shutdown();
 				}

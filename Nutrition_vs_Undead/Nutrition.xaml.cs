@@ -26,10 +26,10 @@ namespace Nutrition_vs_Undead
 	/// </summary>
 	public partial class Nutrition : UserControl
 	{
-		private DispatcherTimer TimerPocisk = new();			// Timer do pojawiania pocisków
-		private DispatcherTimer TimerSloneczko = new();			// Timer do
-		private DispatcherTimer TimerObrywanie = new();			// Timer do
-		private DispatcherTimer TimerOdswierzanie = new();		// Timer do
+		public DispatcherTimer TimerPocisk = new();			// Timer do pojawiania pocisków
+		public DispatcherTimer TimerSloneczko = new();			// Timer do
+		public DispatcherTimer TimerObrywanie = new();			// Timer do
+		public DispatcherTimer TimerOdswierzanie = new();		// Timer do
 		private int idRosliny = 0;								// Id rośliny
 		private bool Zyje = true;								// Flaga mówiąca czy roślina żyje
 		private int Zycie = 40;									// Wartość życia rośliny

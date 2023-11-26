@@ -54,8 +54,8 @@ namespace Nutrition_vs_Undead
 
 			TimerSloneczka.Start();
 
-			TimerSpawnowania.Interval = TimeSpan.FromSeconds(5);
-			TimerSpawnowania.Tick += TimerSpawnowania_Tick;
+            TimerSpawnowania.Interval = TimeSpan.FromSeconds((1 / ((double)PoziomTrudnosci + 10)) * 100);
+            TimerSpawnowania.Tick += TimerSpawnowania_Tick;
 
 
 
@@ -98,7 +98,7 @@ namespace Nutrition_vs_Undead
 		private void TimerUtrudniania_Tick(object? sender, EventArgs e)	// Rośnięcie częstotliwości pojawiania nieumarlaków
 		{
 			PoziomTrudnosci += 5;
-			TimerSpawnowania.Interval = TimeSpan.FromSeconds(((1 / ((double)PoziomTrudnosci + 10)) * 50) * 2);
+			TimerSpawnowania.Interval = TimeSpan.FromSeconds((1 / ((double)PoziomTrudnosci + 10)) * 100);
 		}
 
 		private void TimerSpawnowania_Tick(object? sender, EventArgs e)
