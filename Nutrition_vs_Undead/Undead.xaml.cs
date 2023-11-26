@@ -94,7 +94,7 @@ namespace Nutrition_vs_Undead
 				}
 				if (Grid.GetRow(this) == Grid.GetRow(i) && Grid.GetColumn(this) == Grid.GetColumn(i)) WRozlince = true;
 			}
-			if (Grid.GetColumn(this) == 0 && !WRozlince)
+			if (Grid.GetColumn(this) == 0 && !WRozlince)	// Zatrzymanie wszystkich timerów po przegranej
 			{
 				foreach (var i in ((Grid)Parent).Children.OfType<Undead>())
 				{
@@ -112,6 +112,10 @@ namespace Nutrition_vs_Undead
 					i.TimerPocisk.Stop();
 					i.TimerSloneczko.Stop();
                 }
+				MainWindow.TimerOdswierzanie.Stop();
+				MainWindow.TimerSloneczka.Stop();
+				MainWindow.TimerSpawnowania.Stop();
+				MainWindow.TimerUtrudniania.Stop();
 
                 if (MessageBox.Show("Przegrałeś/aś!!!") == MessageBoxResult.OK)
 				{
