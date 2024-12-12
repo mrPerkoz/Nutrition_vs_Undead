@@ -1,2 +1,3 @@
 # Nutriton vs Undead
-Świetna gra zrobiona w WPF. Zdecydowanie nie biedna podróba Plants vs Zombies...
+Prosta gra typu Tower Defence stworzona w WPF w ramach projektu szkolnego.
+Gra inspirowana jest Plants vs Zombies.
